@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module'; // Importe o módulo Auth aqui
+import { UsersModule } from './users/users.module'; // Importe outros módulos necessários
 
 @Module({
-  imports: [AuthModule, UsersModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',  
+      isGlobal: true,       
+    }),
+    AuthModule,
+    UsersModule,
+  ],
 })
 export class AppModule {}

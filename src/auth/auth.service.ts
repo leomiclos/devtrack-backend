@@ -3,6 +3,7 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import * as bcrypt from 'bcryptjs';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import { JwtService } from '@nestjs/jwt';
 
 interface User {
   id: number;
@@ -18,7 +19,9 @@ export class AuthService {
   private readonly usersFilePath = path.resolve(__dirname, '..', '..', 'db', 'user.json');
   private nextId: number = 1; // Gerador de ID começando de 1
 
-  constructor() {
+  constructor(
+    private readonly jwtService: JwtService
+  ) {
     this.loadUsers();
   }
 
@@ -108,15 +111,23 @@ export class AuthService {
   async login(createAuthDto: CreateAuthDto) {
     const { email, senha } = createAuthDto;
 
+    // Verifica se o usuário existe
     const user = this.users.find((user) => user.email === email);
     if (!user) {
       throw new UnauthorizedException('Email ou senha inválidos');
     }
 
+    // Compara a senha fornecida com a senha armazenada no banco de dados
     const senhaCorreta = await bcrypt.compare(senha, user.senha);
     if (!senhaCorreta) {
       throw new UnauthorizedException('Email ou senha inválidos');
     }
+
+    // Gera o payload para o token JWT
+    const payload = { email: user.email, sub: user.id }; // sub é normalmente o id do usuário
+
+    // Cria o token JWT
+    const token = this.jwtService.sign(payload);
 
     return {
       message: 'Login realizado com sucesso!',
@@ -124,6 +135,7 @@ export class AuthService {
         nome: user.nome,
         email: user.email,
       },
+      accessToken: token, // Retorna o token junto com a resposta
     };
   }
 

@@ -6,6 +6,7 @@ import { User } from './entities/user.entity'; // Você pode criar esse arquivo 
 
 @Injectable()
 export class UsersService {
+
   private readonly usersFilePath = path.resolve(__dirname, '..', '..', 'db', 'user.json');
 
   // Função para pegar todos os usuários
@@ -19,6 +20,16 @@ export class UsersService {
         acceptTerms: user.acceptTerms,
         createdAt: user.createdAt, // Exemplo, se você quiser mostrar data
       }));
+    } catch (error) {
+      throw new Error('Não foi possível ler o arquivo de usuários');
+    }
+  }
+
+  async findById(id: string): Promise<User | null> {
+    try {
+      const users = await fs.readJson(this.usersFilePath);
+      const user = users.find((user) => user.id === id);
+      return user || null;
     } catch (error) {
       throw new Error('Não foi possível ler o arquivo de usuários');
     }
