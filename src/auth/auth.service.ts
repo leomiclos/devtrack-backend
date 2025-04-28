@@ -134,6 +134,7 @@ export class AuthService {
       user: {
         nome: user.nome,
         email: user.email,
+        id: user.id,
       },
       accessToken: token, // Retorna o token junto com a resposta
     };

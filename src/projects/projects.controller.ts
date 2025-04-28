@@ -22,9 +22,20 @@ export class ProjectsController {
     return this.projectsService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectsService.update(+id, updateProjectDto);
+  @Get(':userId/user')
+  findByUserId(@Param('userId') id: string) {
+    return this.projectsService.findAllById(+id);
+  }
+
+  @Get('conclude/:id')
+  updateStatus(@Param('id') id: number) {
+    const statusProject = 'Completo'; // Defina o status como "Completo" diretamente
+    return this.projectsService.updateStatus(id, { status: statusProject });
+  }
+
+  @Patch('update-hours/:id') // Usando o verbo PATCH aqui
+  updateHours(@Param('id') id: number, @Body() body: Record<string, any>) {
+    return this.projectsService.updateHours(+id, body);
   }
 
   @Delete(':id')
