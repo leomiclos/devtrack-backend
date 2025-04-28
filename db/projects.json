@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "title": "Project Alpha",
+      "description": "Desenvolvimento de aplicativo mobile para gestão de tarefas.",
+      "status": "Em Andamento",
+      "creationDate": "2025-01-15",
+      "image": "https://picsum.photos/300?random=1",
+      "lastUpdateDate": "2025-04-01",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Project Beta",
+      "description": "Implementação de sistema de pagamentos online para e-commerce.",
+      "status": "Completo",
+      "creationDate": "2025-02-10",
+      "image": "https://picsum.photos/300?random=2",
+      "lastUpdateDate": "2025-04-15",
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "title": "Project Gamma",
+      "description": "Criação de dashboard analítico para visualização de métricas.",
+      "status": "Não Iniciado",
+      "creationDate": "2025-03-05",
+      "image": "https://picsum.photos/300?random=3",
+      "lastUpdateDate": "2025-04-10",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "Project Delta",
+      "description": "Redesign da plataforma de cursos online para melhorar a experiência do usuário.",
+      "status": "Em Andamento",
+      "creationDate": "2025-04-01",
+      "image": "https://picsum.photos/300?random=4",
+      "lastUpdateDate": "2025-04-20",
+      "userId": 2
+    },
+    {
+      "id": 5,
+      "title": "Project Epsilon",
+      "description": "Automatização do processo de onboarding de novos clientes.",
+      "status": "Completo",
+      "creationDate": "2025-04-10",
+      "image": "https://picsum.photos/300?random=5",
+      "lastUpdateDate": "2025-04-22",
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "title": "Project Zeta",
+      "description": "Desenvolvimento de API para integração de sistemas internos.",
+      "status": "Em Andamento",
+      "creationDate": "2025-03-28",
+      "image": "https://picsum.photos/300?random=6",
+      "lastUpdateDate": "2025-04-18",
+      "userId": 2
+    },
+    {
+      "id": 7,
+      "title": "Project Eta",
+      "description": "Lançamento de campanha de marketing para novo produto.",
+      "status": "Não Iniciado",
+      "creationDate": "2025-02-20",
+      "image": "https://picsum.photos/300?random=7",
+      "lastUpdateDate": "2025-03-30",
+      "userId": 1
+    },
+    {
+      "id": 8,
+      "title": "Project Theta",
+      "description": "Implementação de chatbot para atendimento ao cliente.",
+      "status": "Completo",
+      "creationDate": "2025-01-30",
+      "image": "https://picsum.photos/300?random=8",
+      "lastUpdateDate": "2025-02-28",
+      "userId": 2
+    }
+  ]
+  

@@ -1,8 +1,17 @@
 [
     {
-        "nome": "Carlos Souza",
-        "email": "carlos.souza@example.com",
-        "senha": "$2b$10$dYdzphAsWgcT2TYoCI1Qxe4ePmZnF42dyp1z2efNnMHbK2WmHNOrq",
-        "acceptTerms": true
+      "id": 1,
+      "nome": "Carlos Souza",
+      "email": "carlos.souza@example.com",
+      "senha": "$2b$10$dYdzphAsWgcT2TYoCI1Qxe4ePmZnF42dyp1z2efNnMHbK2WmHNOrq",
+      "acceptTerms": true
+    },
+    {
+      "id": 2,
+      "nome": "Leonardo Miclos",
+      "email": "leonardomiclos@gmail.com",
+      "senha": "$2b$10$5LQeN23Q3V1V8fO2MW8MO.2wgvtcoh2id3GYZMV/t0H0SNqCEn0UC",
+      "acceptTerms": true
     }
-]
+  ]
+  

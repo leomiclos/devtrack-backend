@@ -12,4 +12,7 @@ export class CreateUserDto {
 
   @IsBoolean()
   acceptTerms: boolean;
+
+  id?: number;
+  
 }
