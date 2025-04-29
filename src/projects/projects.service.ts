@@ -9,6 +9,7 @@ import { log } from 'console';
 export class ProjectsService {
 
   private readonly projectsFilePath = path.resolve(__dirname, '..', '..', 'db', 'projects.json');
+  private readonly apontamentosFilePath = path.resolve(__dirname, '..', '..', 'db', 'hours.json');
 
 
   create(createProjectDto: CreateProjectDto) {
@@ -90,49 +91,87 @@ export class ProjectsService {
     }
   }
   
-  @Patch('update-hours/:id')
-  updateHours(@Param('id') id: number, @Body() body: Record<string, any>) { // Recebe diretamente o corpo como um objeto genérico  
+  updateHours(@Param('id') id: number, @Body() body: Record<string, any>) {
     try {
-      // Verifica se o arquivo de projetos existe
+      // === 1. Atualiza workedHours em projects.json ===
       if (!fs.existsSync(this.projectsFilePath)) {
         throw new Error(`Arquivo de projetos não encontrado em ${this.projectsFilePath}`);
       }
   
       const projects = fs.readJsonSync(this.projectsFilePath);
-      const projectIndex = projects.findIndex((project) => project.id === +id); // Garantir que o id seja um número
+      const projectIndex = projects.findIndex((project) => project.id === +id);
   
       if (projectIndex === -1) {
         throw new Error(`Projeto com id ${id} não encontrado`);
       }
   
-      // Verifica se o projeto já tem horas registradas. Se não tiver, inicializa com 0.
-      const currentWorkedHours = projects[projectIndex].workedHours ?? 0; // Usa 0 se workedHours não estiver definido
-      const receivedWorkedHours = body.workedHours ?? 0; // Horas recebidas da requisição diretamente
-      const newWorkedHours = currentWorkedHours + receivedWorkedHours; // Soma as horas
+      const currentWorkedHours = projects[projectIndex].workedHours ?? 0;
+      const receivedWorkedHours = body.workedHours ?? 0;
+      const newWorkedHours = currentWorkedHours + receivedWorkedHours;
   
-      // Atualiza as horas trabalhadas
       projects[projectIndex] = {
         ...projects[projectIndex],
-        workedHours: newWorkedHours, // Atualiza apenas o workedHours com o valor somado
+        workedHours: newWorkedHours,
       };
   
-      // Grava as alterações no arquivo
       fs.writeJsonSync(this.projectsFilePath, projects);
   
-      return { message: 'Horas atualizadas com sucesso' }; // Resposta de sucesso
+      // === 2. Registra apontamento em apontamentos.json ===
+      const apontamentosFilePath = this.apontamentosFilePath // <-- ajuste aqui
+  
+      let apontamentos: {
+        id: number;
+        descricao: string;
+        horas: number;
+        data: string;
+        projetoId: number;
+        userId: number | null;
+      }[] = [];
+
+      if (fs.existsSync(apontamentosFilePath)) {
+        apontamentos = fs.readJsonSync(apontamentosFilePath);
+      }
+  
+      const novoApontamento = {
+        id: apontamentos.length > 0 ? apontamentos[apontamentos.length - 1].id + 1 : 1,
+        descricao: body.description ?? '',
+        horas: receivedWorkedHours,
+        data: body.data ?? new Date().toISOString().split('T')[0], // usa data de hoje se não enviada
+        projetoId: +id,
+        userId: body.userId ?? null
+      };
+  
+      apontamentos.push(novoApontamento);
+      fs.writeJsonSync(apontamentosFilePath, apontamentos);
+  
+      return { message: 'Horas atualizadas e apontamento registrado com sucesso' };
   
     } catch (error) {
-      console.error('Erro ao ler ou atualizar o arquivo de projetos:', error);
-      throw new Error(`Não foi possível ler ou atualizar o arquivo de projetos: ${error.message}`);
+      console.error('Erro ao atualizar horas/apontamento:', error);
+      throw new Error(`Erro ao processar requisição: ${error.message}`);
+    }
+  }
+
+  findDescription(id: number) {
+    try {
+      // Lê o arquivo JSON contendo os dados
+      const infos = fs.readJsonSync(this.apontamentosFilePath);
+  
+      // Filtra os registros de horas com base no projetoId
+      const projectHours = infos.filter((project) => project.projetoId === id);
+  
+      // Se não encontrar nenhum projeto com esse id
+      if (projectHours.length === 0) {
+        throw new Error(`Nenhuma descrição de horas encontrada para o projeto com id ${id}`);
+      }
+  
+      return projectHours;
+    } catch (error) {
+      throw new Error(`Erro ao buscar descrições de horas do projeto: ${error.message}`);
     }
   }
   
   
-  
-  
-  
-  
-
   remove(id: number) {
     try {
       const projects = fs.readJson(this.projectsFilePath);

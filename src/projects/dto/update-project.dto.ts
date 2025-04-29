@@ -9,4 +9,5 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
     lastUpdateDate: string | undefined;
     workedHours: number | undefined;
     userId?: number | undefined;
+    description?: string | undefined;
 }

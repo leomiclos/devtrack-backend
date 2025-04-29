@@ -1,0 +1,94 @@
+[
+    {
+        "id": 1,
+        "descricao": "Configuração inicial do chatbot com integração à API externa para suporte ao cliente",
+        "horas": 4.5,
+        "data": "2025-03-15",
+        "projetoId": 8
+    },
+    {
+        "id": 2,
+        "descricao": "Ajuste no fluxo de conversas do atendimento para melhorar a experiência do usuário",
+        "horas": 2,
+        "data": "2025-03-18",
+        "projetoId": 8
+    },
+    {
+        "id": 3,
+        "descricao": "Correção de bugs críticos no chatbot relacionados ao processamento de mensagens",
+        "horas": 3,
+        "data": "2025-03-20",
+        "projetoId": 2
+    },
+    {
+        "id": 4,
+        "descricao": "Correção de bugs menores no chatbot para melhorar a estabilidade",
+        "horas": 1,
+        "data": "2025-03-22",
+        "projetoId": 2
+    },
+    {
+        "id": 5,
+        "descricao": "Correção de bugs no chatbot relacionados à integração com o banco de dados",
+        "horas": 1,
+        "data": "2025-03-25",
+        "projetoId": 2
+    },
+    {
+        "id": 6,
+        "descricao": "Correção de bugs no chatbot para otimizar o desempenho em consultas",
+        "horas": 1,
+        "data": "2025-03-27",
+        "projetoId": 2
+    },
+    {
+        "id": 7,
+        "descricao": "Correção de bugs no chatbot para resolver problemas de autenticação",
+        "horas": 1,
+        "data": "2025-03-29",
+        "projetoId": 2
+    },
+    {
+        "id": 8,
+        "descricao": "Correção de bugs no chatbot relacionados ao envio de notificações",
+        "horas": 1,
+        "data": "2025-04-01",
+        "projetoId": 2
+    },
+    {
+        "id": 9,
+        "descricao": "Correção de bugs no chatbot para ajustar o comportamento em cenários de erro",
+        "horas": 1,
+        "data": "2025-04-03",
+        "projetoId": 2
+    },
+    {
+        "id": 10,
+        "descricao": "Correção de bugs no chatbot para melhorar a compatibilidade com navegadores",
+        "horas": 1,
+        "data": "2025-04-05",
+        "projetoId": 2
+    },
+    {
+        "id": 11,
+        "descricao": "Correção de bugs no chatbot para resolver problemas de formatação de mensagens",
+        "horas": 1,
+        "data": "2025-04-07",
+        "projetoId": 2
+    },
+    {
+        "id": 12,
+        "descricao": "Implementação de funcionalidades pendentes no chatbot conforme especificado",
+        "horas": 2,
+        "data": "2025-04-10",
+        "projetoId": 2
+    },
+    {
+        "id": 13,
+        "descricao": "Adição de detalhes e ajustes finais no projeto para entrega",
+        "horas": 1,
+        "data": "2025-04-12",
+        "projetoId": 2,
+        "userId": null
+    }
+]

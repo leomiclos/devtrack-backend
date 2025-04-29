@@ -38,6 +38,11 @@ export class ProjectsController {
     return this.projectsService.updateHours(+id, body);
   }
 
+  @Get('description/:id')
+  findDescription(@Param('id') id: string) {
+    return this.projectsService.findDescription(+id);
+  }
+  
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.projectsService.remove(+id);
